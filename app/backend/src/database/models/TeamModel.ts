@@ -4,7 +4,7 @@ import db from '.';
 
 class Teams extends Model {
   // declare <campo>: <tipo>;
-  declare id: number;
+  declare readonly id: number;
   declare teamName: string;
 }
 
