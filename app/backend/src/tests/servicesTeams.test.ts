@@ -34,4 +34,15 @@ describe('Service Teams test', () => {
     expect(response.body).to.deep.equal(teamsMockList);
     expect(response.body.length).to.be.equal(16);
   })
+
+  it('Get a team by id /teams:id endpoint', async () => {
+    // GIVEN
+    //WHEN
+    // THEN
+    sinon.stub(Model, 'findOne').resolves(teamsMockList[1] as Teams)
+    const response = await chai.request(app).get('/teams/1');   
+    expect(response.status).to.be.equal(200);
+    expect(response.body).to.deep.equal(teamsMockList[1]);
+    expect(response.body.length).to.be.equal(1);
+  })
 });
