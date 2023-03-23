@@ -10,4 +10,8 @@ export default class TeamsService implements IServiceTeams {
     // throw new Error('Method not implemented.');
     return this.teamsModel.findAll();
   }
+
+  async findById(id: number): Promise<Teams | null> {
+    return this.teamsModel.findOne({ where: { id } });
+  }
 }

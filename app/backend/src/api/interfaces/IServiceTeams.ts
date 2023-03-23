@@ -1,7 +1,7 @@
-// import Teams from 'src/database/models/Teams';
-
+import Teams from '../../database/models/TeamModel';
 import ITeams from './ITeams';
 
 export default interface IServiceTeams {
-  getAll(): Promise<ITeams[]>
+  getAll(): Promise<ITeams[]>;
+  findById(id: number): Promise<Teams | null>;
 }
