@@ -13,13 +13,6 @@ const createToken = (email: string) => {
   return token;
 };
 
-// const validateToken = (token: string) => {
-//   try {
-//     const decoded = jwt.verify(token, TOKEN_SECRET);
-//     return decoded;
-//   } catch (error) {
-//     return { type: 401, message: 'Invalid token' };
-//   }
-// };
+const decodeToken = (token: string) => jwt.verify(token, TOKEN_SECRET);
 
-export default { createToken };
+export { createToken, decodeToken };

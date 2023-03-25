@@ -1,5 +1,6 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import LoginService from '../services/LoginService';
+// import CustomError from '../utils/CustomError';
 // import TeamsService from '../services/TeamsService';
 
 export default class LoginController {
@@ -12,5 +13,22 @@ export default class LoginController {
     const { email, password } = req.body;
     const token = await this._loginService.login(email, password);
     res.status(200).json({ token });
+  }
+
+  // async role(req: Request, res: Response) {
+  //   const { authorization: token } = req.headers;
+  //   if (!token) throw new CustomError('Token not found', '401');
+  //   const getRole = await this._loginService.role(token);
+  //   res.status(200).json({ role: getRole });
+  // }
+  async role(req: Request, res: Response, next: NextFunction) {
+    // const { authorization } = req.headers;
+    try {
+      const { email } = req.body;
+      const role = await this._loginService.role(email);
+      return res.status(200).json({ role });
+    } catch (error) {
+      next(error);
+    }
   }
 }
