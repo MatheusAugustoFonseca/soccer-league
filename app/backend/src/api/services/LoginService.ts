@@ -4,10 +4,12 @@ import Users from '../../database/models/UsersModel';
 import IServiceLogin from '../interfaces/IServiceLogin';
 import JWT from '../utils/JWT';
 import CustomError from '../utils/CustomError';
+import checkLogin from '../utils/joi/validateJoi';
 
 export default class LoginService implements IServiceLogin {
   public model: ModelStatic<Users> = Users;
   async login(email: string, password: string) {
+    checkLogin(email, password);
     const userOn = await this.model.findOne({
       where: {
         email,
