@@ -8,7 +8,6 @@ export default class MatchesService implements IServiceMatches {
   protected matchesModel: ModelStatic<Matches> = Matches;
 
   async getAll(): Promise<IMatches[]> {
-    // throw new Error('Method not implemented.');
     return this.matchesModel.findAll({
       include: [
         { model: Teams, as: 'homeTeam', attributes: { exclude: ['id'] } },
@@ -28,5 +27,10 @@ export default class MatchesService implements IServiceMatches {
       ],
     });
     return matches;
+  }
+
+  async finishingMatch(id: number): Promise<void> {
+    await this.matchesModel.update({
+      inProgress: false }, { where: { id } });
   }
 }
