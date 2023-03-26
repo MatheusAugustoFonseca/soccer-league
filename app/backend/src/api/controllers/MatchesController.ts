@@ -9,7 +9,7 @@ export default class MatchesController {
 
   async getAll(req: Request, res: Response) {
     const { inProgress } = req.query;
-    console.log(inProgress);
+    // console.log(inProgress);
     if (inProgress) {
       const filtered = await this._matchesService.byProgress(inProgress.toString());
       // console.log(filtered);
@@ -23,5 +23,16 @@ export default class MatchesController {
     const { id } = req.params;
     await this._matchesService.finishingMatch(+id);
     return res.status(200).json({ message: 'Finished' });
+  }
+
+  async updateMatch(req: Request, res: Response) {
+    const { id } = req.params;
+    const { homeTeamGoals, awayTeamGoals } = req.body;
+    console.log(typeof homeTeamGoals, 'bofore await homeTeamGoals');
+    await this._matchesService.updateMatch(+id, homeTeamGoals, awayTeamGoals);
+    console.log(typeof id, 'typeOOOOOOOOF');
+    console.log(typeof homeTeamGoals, 'homeTeamGoals');
+
+    return res.status(200).json({ message: 'Updated' });
   }
 }
