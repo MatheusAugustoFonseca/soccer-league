@@ -37,15 +37,15 @@ export default class MatchesController {
     return res.status(200).json({ message: 'Updated' });
   }
 
-  // async createMatch(req: Request, res: Response) {
-  //   const { homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals } = req.body;
-  //   const createdMatch = await this._matchesService.createMatch(
-  //     homeTeamId,
-  //     awayTeamId,
-  //     homeTeamGoals,
-  //     awayTeamGoals,
-  //   );
-  //   return res.status(201).json(createdMatch);
-  //   // return console.log(createdMatch);
-  // }
+  async createMatch(req: Request, res: Response) {
+    const { homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals } = req.body;
+    const createdMatch = await this._matchesService.createMatch(
+      homeTeamId,
+      awayTeamId,
+      homeTeamGoals,
+      awayTeamGoals,
+    );
+    return res.status(201).json(createdMatch);
+    // return console.log(createdMatch);
+  }
 }

@@ -25,12 +25,12 @@ router.patch(
     matchesController.updateMatch(req, res),
 );
 
-// router.post(
-//   '/',
-//   (req: Request, res: Response, next: NextFunction) =>
-//     TokenValidation.tokenValidation(req, res, next),
-//   (req: Request, res: Response) => matchesController.createMatch(req, res),
-// );
+router.post(
+  '/',
+  (req: Request, res: Response, next: NextFunction) =>
+    TokenValidation.tokenValidation(req, res, next),
+  (req: Request, res: Response) => matchesController.createMatch(req, res),
+);
 // router.post(
 //   '/',
 //   TokenValidation.tokenValidation,
