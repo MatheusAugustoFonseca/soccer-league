@@ -14,9 +14,15 @@ router.post(
   verifyUserInput,
   (req: Request, res: Response) => loginController.loggin(req, res),
 );
+// router.get(
+//   '/role',
+//   TokenValidation.tokenValidation,
+//   (req: Request, res: Response, next: NextFunction) => loginController.role(req, res, next),
+// );
 router.get(
   '/role',
-  TokenValidation.tokenValidation,
+  (req: Request, res: Response, next: NextFunction) =>
+    TokenValidation.tokenValidation(req, res, next),
   (req: Request, res: Response, next: NextFunction) => loginController.role(req, res, next),
 );
 

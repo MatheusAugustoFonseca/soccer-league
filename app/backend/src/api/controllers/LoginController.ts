@@ -24,7 +24,7 @@ export default class LoginController {
   async role(req: Request, res: Response, next: NextFunction) {
     // const { authorization } = req.headers;
     try {
-      const { email } = req.body;
+      const { email } = req.body.user;
       const role = await this._loginService.role(email);
       return res.status(200).json({ role });
     } catch (error) {

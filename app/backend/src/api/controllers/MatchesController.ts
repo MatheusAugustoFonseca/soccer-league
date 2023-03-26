@@ -29,23 +29,23 @@ export default class MatchesController {
     const { id } = req.params;
     const { homeTeamGoals, awayTeamGoals } = req.body;
     // console.log(typeof homeTeamGoals, 'bofore await homeTeamGoals');
-    console.log(homeTeamGoals, 'bofore await homeTeamGoals');
+    // console.log(req.body, 'bofore await homeTeamGoals');
     await this._matchesService.updateMatch(+id, homeTeamGoals, awayTeamGoals);
-    console.log(id, 'typeOOOOOOOOF');
-    console.log(homeTeamGoals, 'homeTeamGoals');
+    // console.log(test, 'typeOOOOOOOOF');
+    // console.log(homeTeamGoals, 'homeTeamGoals');
 
     return res.status(200).json({ message: 'Updated' });
   }
 
-  async createMatch(req: Request, _res: Response) {
-    const { homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals } = req.body;
-    const createdMatch = await this._matchesService.createMatch(
-      homeTeamId,
-      awayTeamId,
-      homeTeamGoals,
-      awayTeamGoals,
-    );
-    // return res.status(201).json(createdMatch);
-    return console.log(createdMatch);
-  }
+  // async createMatch(req: Request, res: Response) {
+  //   const { homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals } = req.body;
+  //   const createdMatch = await this._matchesService.createMatch(
+  //     homeTeamId,
+  //     awayTeamId,
+  //     homeTeamGoals,
+  //     awayTeamGoals,
+  //   );
+  //   return res.status(201).json(createdMatch);
+  //   // return console.log(createdMatch);
+  // }
 }

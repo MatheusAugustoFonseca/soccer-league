@@ -31,10 +31,10 @@ router.patch(
 //     TokenValidation.tokenValidation(req, res, next),
 //   (req: Request, res: Response) => matchesController.createMatch(req, res),
 // );
-router.post(
-  '/',
-  TokenValidation.tokenValidation,
-  (req: Request, res: Response) => matchesController.createMatch(req, res),
-);
+// router.post(
+//   '/',
+//   TokenValidation.tokenValidation,
+//   (req: Request, res: Response) => matchesController.createMatch(req, res),
+// );
 
 export default router;
