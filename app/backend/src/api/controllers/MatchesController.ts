@@ -7,8 +7,15 @@ export default class MatchesController {
     this._matchesService = matchesService;
   }
 
-  async getAll(_req: Request, res: Response) {
+  async getAll(req: Request, res: Response) {
+    const { inProgress } = req.query;
+    console.log(inProgress);
+    if (inProgress) {
+      const filtered = await this._matchesService.byProgress(inProgress.toString());
+      // console.log(filtered);
+      return res.status(200).json(filtered);
+    }
     const allMatches = await this._matchesService.getAll();
-    res.status(200).json(allMatches);
+    return res.status(200).json(allMatches);
   }
 }
