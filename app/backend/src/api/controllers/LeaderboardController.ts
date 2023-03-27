@@ -7,8 +7,13 @@ export default class LeaderboardController {
     this._service = service;
   }
 
-  async getLeaderboard(req: Request, res: Response) {
+  async getLeaderboard(_req: Request, res: Response) {
     const results = await this._service.getLeaderboard();
+    return res.status(200).json(results);
+  }
+
+  async getAwayLeaderboard(_req: Request, res: Response) {
+    const results = await this._service.getAwayLeaderboard();
     return res.status(200).json(results);
   }
 }
