@@ -82,10 +82,13 @@ describe('Test on login endpoit', () => {
     expect(response.body).to.be.deep.equal({ "message": "All fields must be filled" });
   });
 
-  // it('should return the correct role, status(200)', async () => {
-  //   const response = await chai.request(app).get('/login/role');
-  //   expect(response.status).to.be.equal(200);
-  //   expect(response.body).to.be.deep.equal({ "role": "user" });
-  // });
+  it('should return the correct role, status(200)', async () => {
+    const response = await chai.request(app).post('/login').send(validLogin);
+    expect(response.body.token).not.to.be.empty;
+    const token = response.body.token;
+    const newResponse = await chai.request(app).get('/login/role').set('authorization', token);
+    expect(newResponse.status).to.be.equal(200);
+    expect(newResponse.body).to.be.deep.equal({ "role": "user" });
+  });
 
 });
